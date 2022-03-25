@@ -9,6 +9,16 @@ from core.notify import notify
 import config
 
 
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    handlers=[
+        logging.FileHandler('export-to-google-drive.log'),
+        logging.StreamHandler(sys.stdout)
+    ]
+)
+
+
 
 def main(source_to_be_zipped,file_prefix,gdrive_parent_folder=None,remove=True):
     
@@ -36,6 +46,12 @@ def main(source_to_be_zipped,file_prefix,gdrive_parent_folder=None,remove=True):
    
 
 if __name__ == '__main__':
+    
+    #if config.DOCKER:
+    #    # create directory that is maped in docker/docker-compose
+    #    os.makedirs(config.SOURCE_TO_BACKUP)
+    
+    
     def run():
         main(
             config.SOURCE_TO_BACKUP,

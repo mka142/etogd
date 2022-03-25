@@ -1,0 +1,16 @@
+version: '3.7'
+
+services:
+  etod:
+    image: etod
+    volumes:
+      - ./credentials.json:/etod/credentials.json
+      - ./token.json:/etod/token.json
+      #- /some_dir/:/etod/sources/some_dir
+    environment:
+      #- SOURCE_TO_BACKUP=/etod/sources/some_dir
+      - ZIP_FILE_NAME=
+      - GDRIVE_PARENT_FOLDER=
+      - SCHEDULE_TIME=
+    env_file: 
+      - ./.env
