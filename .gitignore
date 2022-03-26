@@ -131,3 +131,5 @@ dmypy.json
 
 /credentials.json
 /token.json
+
+/sources-hashes.json

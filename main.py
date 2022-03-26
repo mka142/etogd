@@ -72,8 +72,6 @@ if __name__ == '__main__':
     #if config.DOCKER:
     #    # create directory that is maped in docker/docker-compose
     #    os.makedirs(config.SOURCE_TO_BACKUP)
-    
-    print(config.SOURCES_TO_BACKUP)
     sources = extract_sources_dirs(config.SOURCES_TO_BACKUP)
     
     def run():

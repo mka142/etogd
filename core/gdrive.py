@@ -49,7 +49,8 @@ def upload_file(file_path: Path,parent_folder_id=None):
             file_metadata['parents'] = [parent_folder_id]
         
         media = MediaFileUpload(file_path,
-                                mimetype=get_file_mime_type(file_path))
+                                mimetype=get_file_mime_type(file_path),
+                                resumable=True)
         file = service.files().create(body=file_metadata,
                                       media_body=media,
                                       fields='id').execute()
