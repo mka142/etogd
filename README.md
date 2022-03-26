@@ -7,9 +7,6 @@ Firstly install required packages: `python install -r requirements.txt` (best in
 ### Configuration
 - SOURCE_TO_BACKUP
     path to directory or file that should be archived
-- ZIP_FILE_NAME
-    Prefix for archive name. Helpful to recognize archive later. Sufix of the file is just current date and time.
-    `default: ''`
 - GDRIVE_PARENT_FOLDER (optional)
     `ID` of google folder where archive should be uploaded
     `default ''` (home google drive directory)

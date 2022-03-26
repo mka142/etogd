@@ -2,14 +2,13 @@ version: '3.7'
 
 services:
   etod:
-    image: etod
+    image: mka142/etogd
     volumes:
-      - ./credentials.json:/etod/credentials.json
-      - ./token.json:/etod/token.json
-      #- /some_dir/:/etod/sources/some_dir
+      - ./credentials.json:/etogd/credentials.json
+      - ./token.json:/etogd/token.json
+      #- /some/machine/path/data:/etogd/sources/DATA
     environment:
-      #- SOURCE_TO_BACKUP=/etod/sources/some_dir
-      - ZIP_FILE_NAME=
+      #- SOURCES_TO_BACKUP=DATA_ARCHIVE:/etogd/sources/DATA_ARCHIVE
       - GDRIVE_PARENT_FOLDER=
       - SCHEDULE_TIME=
     env_file: 

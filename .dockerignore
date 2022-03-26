@@ -2,3 +2,7 @@ credentials.json
 token.json
 .env
 env/
+docker-compose.yaml
+.gitignore
+Dockerfile
+*.log

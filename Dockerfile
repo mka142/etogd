@@ -8,9 +8,8 @@ RUN apt-get -y install libmagic1
 
 RUN pip install --upgrade pip
 
-RUN mkdir /etod
-
-WORKDIR /etod
+RUN mkdir /etogd
+WORKDIR /etogd
 
 COPY ./ .
 

@@ -60,3 +60,6 @@ def upload_file(file_path: Path,parent_folder_id=None):
         # TODO(developer) - Handle errors from drive API.
         print(f'An error occurred: {error}')
         return False
+    
+if __name__ == '__main__':
+    upload_file(None,None)

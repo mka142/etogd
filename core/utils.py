@@ -52,7 +52,6 @@ def zip_folder(file_name:typing.Union[str,Path],path:typing.Union[str,Path]) -> 
 def current_time_suffix_for_file():
     return datetime.now().strftime('%Y-%m-%d %H-%M-%S')
 
-
 def make_archive(source, destination):
     base = os.path.basename(str(destination))
     name = base.split('.')[0]
@@ -62,3 +61,13 @@ def make_archive(source, destination):
     #print(source, destination, archive_from, archive_to)
     shutil.make_archive(name, format, archive_from, archive_to)
     shutil.move('%s.%s'%(name,format), destination)
+    
+def extract_sources_dirs(env_string,delimiter=',',name_and_path_delimiter=':') -> list:
+    sources = env_string.split(delimiter)
+    result = []
+    for source in sources:
+        name,path = source.split(name_and_path_delimiter)
+        result.append((name,path))
+    
+    return result
+
