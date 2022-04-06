@@ -62,5 +62,16 @@ def upload_file(file_path: Path,parent_folder_id=None):
         print(f'An error occurred: {error}')
         return False
     
+def refresh_token():
+    creds = None
+    creds = Credentials.from_authorized_user_file(BASE_DIR / 'token.json', SCOPES)
+    if creds.expired and creds.refresh_token:
+        creds.refresh(Request())
+        return True
+        
+    else:
+        return False
+    
+    
 if __name__ == '__main__':
     upload_file(None,None)

@@ -5,8 +5,9 @@ Simple python tool that allows you to archive files and folders to google drive
 Firstly install required packages: `python install -r requirements.txt` (best in python env). Then go to google cloud console, create project, enable Google Drive API and create credentials for Desktop. Copy credentials to project root directory and rename it to `credentials.json`.
 
 ### Configuration
-- SOURCE_TO_BACKUP
-    path to directory or file that should be archived
+- SOURCES_TO_BACKUP
+    comma separated list of paths to directorys or files that should be archived:
+    `backup_name:/path/to/backup,backup_name2:/path2/to/backup`
 - GDRIVE_PARENT_FOLDER (optional)
     `ID` of google folder where archive should be uploaded
     `default ''` (home google drive directory)
@@ -19,10 +20,10 @@ Firstly install required packages: `python install -r requirements.txt` (best in
 - APPRISE_NOTIFICATIONS (optional)
     any valid space separated list of apprise services
     `default: ''`
-
+- BACKUP_WHEN_NO_CHANGE (optional)
+    if set to 1 backup will be done even there is no change in relation to previous backup
+    `default: 0`
 
 ### Future goals:
-- configuration for docker
-- add many sources to backup
 - add ohter formats to make_archive
 - add option to protect archive via password

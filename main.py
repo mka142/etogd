@@ -9,7 +9,7 @@ from core.utils import (
     extract_sources_dirs,
     )
 from core.hashes import source_hashes
-from core.gdrive import upload_file
+from core.gdrive import upload_file,refresh_token
 from core.notify import notify
 import config
 
@@ -68,6 +68,8 @@ def main(source_to_be_zipped,file_prefix,gdrive_parent_folder=None,remove=True):
         notify(config.APPRISE_NOTIFICATIONS,title='Google drive backup',body=f'Successfully uploaded backup from archive:\n{zip_file_name}')
     
 if __name__ == '__main__':
+    logging.info(f'etogd started at {time.ctime()}')
+    notify(config.APPRISE_NOTIFICATIONS,title="Google drive backup",body="etogd started")
     
     #if config.DOCKER:
     #    # create directory that is maped in docker/docker-compose
@@ -82,8 +84,22 @@ if __name__ == '__main__':
                 config.GDRIVE_PARENT_FOLDER,
                 config.REMOVE_LOCAL
                 )
+    
+    
+    def refresh_google_token():
+        logging.info('Refreshing google token')
+        refreshed = refresh_token()
+        
+        if not refreshed:
+            msg = 'Google token not refreshed. You need to change your toakn manually'
+            logging.warning(msg)
+            notify(config.APPRISE_NOTIFICATIONS,title='ERROR Google drive backup',body=msg)
+            
+        
     if config.SCHEDULE_TIME:
         schedule.every(config.SCHEDULE_TIME).minutes.do(run)
+        schedule.every(5).minutes.do(refresh_google_token)
+        
         while True:
             schedule.run_pending()
             time.sleep(1)
