@@ -65,12 +65,14 @@ def upload_file(file_path: Path,parent_folder_id=None):
 def refresh_token():
     creds = None
     creds = Credentials.from_authorized_user_file(BASE_DIR / 'token.json', SCOPES)
+    
     if creds.expired and creds.refresh_token:
         creds.refresh(Request())
-        return True
+        # Save the credentials for the next run
+        with open(BASE_DIR / 'token.json', 'w') as token:
+            token.write(creds.to_json())
         
-    else:
-        return False
+    return creds.valid
     
     
 if __name__ == '__main__':

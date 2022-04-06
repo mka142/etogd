@@ -87,13 +87,15 @@ if __name__ == '__main__':
     
     
     def refresh_google_token():
-        logging.info('Refreshing google token')
+        logging.info('Refreshing google token...')
         refreshed = refresh_token()
         
         if not refreshed:
             msg = 'Google token not refreshed. You need to change your toakn manually'
             logging.warning(msg)
             notify(config.APPRISE_NOTIFICATIONS,title='ERROR Google drive backup',body=msg)
+        else:
+            logging.info(f'Google token refreshed at {time.ctime()}')
             
         
     if config.SCHEDULE_TIME:
