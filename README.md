@@ -2,7 +2,9 @@
 Simple python tool that allows you to archive files and folders to google drive
 
 ### Prepare environment
-Firstly install required packages: `python install -r requirements.txt` (best in python env). Then go to google cloud console, create project, enable Google Drive API and create credentials for Desktop. Copy credentials to project root directory and rename it to `credentials.json`.
+Firstly install required packages: `pip install -r requirements.txt` (best in python env). Then go to google cloud console, create project, enable Google Drive API and create credentials for Desktop. Copy credentials to project root directory and rename it to `credentials.json`.
+
+To access your token.json you can run `python core/gdrive.py` or just use `main.py` with valid configuration
 
 ### Configuration
 - SOURCES_TO_BACKUP
